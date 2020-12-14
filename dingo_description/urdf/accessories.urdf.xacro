@@ -3,7 +3,7 @@
   <!--
     As you add to this URDF, please be aware that both the robot and
     simulation include it. You must retain compatibility with all of
-    the following launch files:
+    the following launch files.
 
     dingo_viz/launch/view_model.launch
     dingo_gazebo/launch/dingo_world.launch

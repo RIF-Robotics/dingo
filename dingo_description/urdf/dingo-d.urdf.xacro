@@ -125,7 +125,6 @@
     <implicitSpringDamper>1</implicitSpringDamper>
   </gazebo>
 
-
   <link name="base_link"></link>
 
   <joint name="base_link_joint" type="fixed">
@@ -151,7 +150,7 @@
       <!-- Center of mass -->
       <origin xyz="0 0 0" rpy="0 0 0"/>
       <mass value="10.0"/>
-      <!-- Moments of inertia: ( chassis without wheels ) -->
+      <!-- Moments of inertia ( chassis without wheels ) -->
       <inertia
         ixx="0.2216" ixy="0" ixz="0"
         iyy="0.2458" iyz="0"
