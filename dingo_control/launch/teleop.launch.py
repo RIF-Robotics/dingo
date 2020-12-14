@@ -12,12 +12,7 @@ from launch.substitutions import LaunchConfiguration, Command
 from launch_ros.actions import Node
 
 def generate_launch_description():
-    #rviz_config = os.path.join(get_package_share_directory('dingo_description'),
-    #                          'rviz', 'dingo.rviz')
-    #
-    #xacro_path = os.path.join(get_package_share_directory('dingo_description'),
-    #                          'urdf', 'dingo-d.urdf.xacro')
-    #robot_description = {'robot_description' : Command(['xacro', ' ', xacro_path])}
+    joy_dev = LaunchConfiguration('joy_dev')
 
     joystick_config = os.path.join(
         get_package_share_directory('dingo_control'),
@@ -26,12 +21,15 @@ def generate_launch_description():
     )
 
     return LaunchDescription([
+        DeclareLaunchArgument('joy_dev', default_value='/dev/input/js0'),
+
         Node(
             package='joy',
             executable='joy_node',
             name='joy_node',
             output='screen',
-            parameters=[joystick_config],
+            parameters=[joystick_config,
+                        {'dev': joy_dev}],
         ),
         Node(
             package='teleop_twist_joy',
