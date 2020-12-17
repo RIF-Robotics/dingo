@@ -233,6 +233,35 @@
     <child link="front_bumper_mount" />
   </joint>
 
+  <!-- LIDAR -->
+  <link name="base_scan">
+    <inertial>
+      <mass value="0.001"/>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <inertia ixx="${dummy_inertia}" ixy="0.0" ixz="0.0" iyy="${dummy_inertia}" iyz="0.0" izz="${dummy_inertia}"/>
+    </inertial>
+
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <cylinder radius="0.041" length="0.076"/>
+      </geometry>
+    </visual>
+
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <cylinder radius="0.041" length="0.076"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="lidar_joint" type="fixed">
+    <parent link="chassis_link"/>
+    <child link="base_scan" />
+    <origin xyz="0.0 0.0 0.15" rpy="0 0 0" />
+  </joint>
+
   <!-- Bring in simulation data for Gazebo. -->
   <xacro:include filename="$(find dingo_description)/urdf/dingo.gazebo" />
 
