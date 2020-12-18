@@ -1,21 +1,22 @@
-cmake_minimum_required(VERSION 3.0.2)
+cmake_minimum_required(VERSION 3.5)
 project(dingo_navigation)
 
-find_package(catkin REQUIRED)
-
-catkin_package()
+find_package(ament_cmake REQUIRED)
 
 install(
-DIRECTORY launch params
-DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}
+  DIRECTORY launch params rviz map
+  DESTINATION share/${PROJECT_NAME}
 )
 
-if(CATKIN_ENABLE_TESTING)
-  find_package(roslaunch REQUIRED)
-  roslaunch_add_file_check(launch/include/amcl.launch)
-  roslaunch_add_file_check(launch/amcl_demo.launch)
-  roslaunch_add_file_check(launch/include/gmapping.launch)
-  roslaunch_add_file_check(launch/gmapping_demo.launch)
-  roslaunch_add_file_check(launch/include/move_base.launch)
-  roslaunch_add_file_check(launch/odom_navigation_demo.launch)
+if(BUILD_TESTING)
+  find_package(ament_lint_auto REQUIRED)
+  # the following line skips the linter which checks for copyrights
+  # uncomment the line when a copyright and license is not present in all source files
+  #set(ament_cmake_copyright_FOUND TRUE)
+  # the following line skips cpplint (only works in a git repo)
+  # uncomment the line when this package is not in a git repo
+  #set(ament_cmake_cpplint_FOUND TRUE)
+  ament_lint_auto_find_test_dependencies()
 endif()
+
+ament_package()
